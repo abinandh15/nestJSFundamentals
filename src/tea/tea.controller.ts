@@ -11,15 +11,16 @@ import {
 import { TeaService } from './tea.service';
 import { CreateTeaDto } from './dto/create-tea.dto';
 import { UpdateTeaDto } from './dto/update-tea.dto';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 
 @Controller('tea')
 export class TeaController {
   constructor(private readonly teaService: TeaService) {}
 
   @Get()
-  findAll(@Query() paginationQuery) {
+  findAll(@Query() paginationQuery: PaginationQueryDto) {
     // const { limit, offset } = paginationQuery;
-    return this.teaService.findAll();  
+    return this.teaService.findAll(paginationQuery);  
   }
 
   @Get(':id')
